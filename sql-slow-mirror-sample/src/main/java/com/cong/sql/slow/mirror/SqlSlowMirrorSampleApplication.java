@@ -1,4 +1,4 @@
-package com.cong.sql.slow.mirror.sqlslowmirrorsample;
+package com.cong.sql.slow.mirror;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

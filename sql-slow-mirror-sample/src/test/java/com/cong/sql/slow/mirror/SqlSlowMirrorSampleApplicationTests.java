@@ -1,4 +1,4 @@
-package com.cong.sql.slow.mirror.sqlslowmirrorsample;
+package com.cong.sql.slow.mirror;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
