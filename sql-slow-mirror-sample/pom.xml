@@ -87,7 +87,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.cong.sql.slow.mirror.SqlSlowMirrorSampleApplication</mainClass>
+                    <mainClass>com.cong.example.SqlSlowMirrorSampleApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
