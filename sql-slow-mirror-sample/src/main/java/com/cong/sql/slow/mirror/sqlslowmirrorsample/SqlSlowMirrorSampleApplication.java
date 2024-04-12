@@ -1,0 +1,13 @@
+package com.cong.sql.slow.mirror.sqlslowmirrorsample;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SqlSlowMirrorSampleApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SqlSlowMirrorSampleApplication.class, args);
+    }
+
+}
