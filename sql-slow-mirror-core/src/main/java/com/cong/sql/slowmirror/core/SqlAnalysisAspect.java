@@ -9,6 +9,8 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.util.Properties;
@@ -33,6 +35,8 @@ import java.util.Properties;
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}
 )})
 public class SqlAnalysisAspect implements Interceptor {
+
+    Logger logger = LoggerFactory.getLogger(SqlAnalysisAspect.class);
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         //执行完后放行
