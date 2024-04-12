@@ -16,7 +16,7 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- * SQL分析方面
+ * MyBatis 分析方面
  *
  * @author cong
  * @date 2024/04/12
@@ -34,12 +34,12 @@ import java.util.Properties;
         method = "query",
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}
 )})
-public class SqlAnalysisAspect implements Interceptor {
 
+public class SqlAnalysisAspect implements Interceptor {
     Logger logger = LoggerFactory.getLogger(SqlAnalysisAspect.class);
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        //执行完后放行
+        // 放行，不改变原有流程
         return invocation.proceed();
     }
 
