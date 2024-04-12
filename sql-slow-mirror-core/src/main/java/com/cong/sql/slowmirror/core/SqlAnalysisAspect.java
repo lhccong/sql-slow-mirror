@@ -1,4 +1,4 @@
-package com.cong.sql.slow.mirror.core;
+package com.cong.sql.slowmirror.core;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.statement.StatementHandler;
