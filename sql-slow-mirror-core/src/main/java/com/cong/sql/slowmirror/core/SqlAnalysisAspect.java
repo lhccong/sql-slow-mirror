@@ -52,7 +52,8 @@ public class SqlAnalysisAspect implements Interceptor {
             Object firstArg = invocation.getArgs()[0];
             //1、是否开启 SQL 替换 2、判断是不是SQL语句表
             if (SqlAnalysisConfig.getSqlReplaceModelSwitch() != null && SqlAnalysisConfig.getSqlReplaceModelSwitch() && firstArg instanceof MappedStatement) {
-                //sql替换模块
+                //SQL 替换模块
+                logger.info("开启 SQL 替换{}","暂未开发 TODO");
 
             }
             //是否分析 SQL 且要是连接对象
@@ -66,8 +67,10 @@ public class SqlAnalysisAspect implements Interceptor {
 
                 if(sqlExtractResult!=null){
                     //1、对sql进行分析
+                    SqlAnalysisResultList resultList  =  SqlAnalysis.analysis(sqlExtractResult,(Connection)firstArg);
 
                     //2、对分析结果进行评估
+                    logger.info("分析结果：{}",resultList);
                 }
             }
         } catch (Exception e) {
