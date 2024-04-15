@@ -3,6 +3,7 @@ package com.cong.sql.slowmirror.config;
 import com.cong.sql.slowmirror.analysis.SqlAnalysisSqlTypeEnum;
 import com.cong.sql.slowmirror.rule.SqlScoreRule;
 import lombok.Data;
+import lombok.Getter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,16 +32,19 @@ public class SqlAnalysisConfig {
     /**
      * 分析开关，默认关闭
      */
+    @Getter
     private static Boolean analysisSwitch = false;
 
     /**
      * 一个id 只检查一次，默认开启
      */
+    @Getter
     private static Boolean onlyCheckOnce = true;
 
     /**
      * 两次检查间隔 默认 5分钟
      */
+    @Getter
     private static Long checkInterval = 5 * 60 * 1000L;
 
     /**
@@ -51,6 +55,7 @@ public class SqlAnalysisConfig {
     /**
      * 进行分析的sql类型
      */
+    @Getter
     private static List<String> sqlType = new ArrayList<>();
 
 
@@ -76,8 +81,9 @@ public class SqlAnalysisConfig {
     private static String appName;
 
     /**
-     * sqlReplaceModelSwitch
+     * sqlReplaceModelSwitch 是否开启替换 SQL
      */
+    @Getter
     private static Boolean sqlReplaceModelSwitch;
 
 
@@ -99,6 +105,7 @@ public class SqlAnalysisConfig {
     /**
      * 例外sql id 配置key,多个需要逗号分隔
      */
+    @Getter
     private static final String EXCEPT_SQL_IDS_KEY = "exceptSqlIds";
 
     /**
