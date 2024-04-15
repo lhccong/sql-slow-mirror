@@ -8,3 +8,4 @@ sql:
   slow:
     mirror:
       enabled: true
+      analysisSwitch: true
