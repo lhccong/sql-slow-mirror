@@ -33,13 +33,13 @@ public class SqlAnalysisConfig {
      * 分析开关，默认关闭
      */
     @Getter
-    private static Boolean analysisSwitch = false;
+    private static boolean analysisSwitch = false;
 
     /**
      * 一个id 只检查一次，默认开启
      */
     @Getter
-    private static Boolean onlyCheckOnce = true;
+    private static boolean onlyCheckOnce = true;
 
     /**
      * 两次检查间隔 默认 5分钟
@@ -158,10 +158,10 @@ public class SqlAnalysisConfig {
             }
 
             if(StringUtils.isNotBlank(properties.getProperty(ANALYSIS_SWITCH_KEY))){
-                analysisSwitch = Boolean.valueOf(properties.getProperty(ANALYSIS_SWITCH_KEY));
+                analysisSwitch = Boolean.parseBoolean(properties.getProperty(ANALYSIS_SWITCH_KEY));
             }
             if(StringUtils.isNotBlank(properties.getProperty(ONLY_CHECK_ONCE))){
-                onlyCheckOnce = Boolean.valueOf(properties.getProperty(ONLY_CHECK_ONCE));
+                onlyCheckOnce = Boolean.parseBoolean(properties.getProperty(ONLY_CHECK_ONCE));
             }
             if(StringUtils.isNotBlank(properties.getProperty(CHECK_INTERVAL))){
                 checkInterval = Long.valueOf(properties.getProperty(CHECK_INTERVAL));
