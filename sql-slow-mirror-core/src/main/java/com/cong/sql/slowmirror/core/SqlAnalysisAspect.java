@@ -1,5 +1,6 @@
 package com.cong.sql.slowmirror.core;
 
+import com.cong.sql.slowmirror.config.SqlAnalysisConfig;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -52,5 +53,7 @@ public class SqlAnalysisAspect implements Interceptor {
 
     @Override
     public void setProperties(Properties properties) {
+        //初始化配置
+        SqlAnalysisConfig.init(properties);
     }
 }
