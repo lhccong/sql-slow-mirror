@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class SqlSlowMirrorSampleApplicationTests {
@@ -15,7 +15,7 @@ class SqlSlowMirrorSampleApplicationTests {
 
     @Test
     void testSqlSlowMirror() {
-        assertNull(taskService.getById(1));
+        assertNotNull(taskService.getById(1));
         System.out.println(taskService.getById(1));
     }
 
