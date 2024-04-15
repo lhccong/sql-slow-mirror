@@ -36,6 +36,8 @@ import java.util.Properties;
 )})
 
 public class SqlAnalysisAspect implements Interceptor {
+
+    // 日志
     Logger logger = LoggerFactory.getLogger(SqlAnalysisAspect.class);
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -50,6 +52,5 @@ public class SqlAnalysisAspect implements Interceptor {
 
     @Override
     public void setProperties(Properties properties) {
-        Interceptor.super.setProperties(properties);
     }
 }
