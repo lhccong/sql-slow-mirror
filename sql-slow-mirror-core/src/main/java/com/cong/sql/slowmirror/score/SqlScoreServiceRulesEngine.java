@@ -2,7 +2,6 @@ package com.cong.sql.slowmirror.score;
 
 import com.cong.sql.slowmirror.analysis.SqlAnalysisResult;
 import com.cong.sql.slowmirror.analysis.SqlAnalysisResultList;
-import com.cong.sql.slowmirror.utils.GsonUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +59,7 @@ public class SqlScoreServiceRulesEngine implements SqlScoreService {
         //设置分析结果
         scoreResult.setAnalysisResults(analysisResults);
 
-        logger.info("SQL 评分结果 = {}", GsonUtil.bean2Json(scoreResult));
+        logger.info("SQL 评分结果 = {}", scoreResult);
 
         return scoreResult;
     }
