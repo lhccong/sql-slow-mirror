@@ -2,7 +2,6 @@ package com.cong.sql.slowmirror.analysis;
 
 import com.cong.sql.slowmirror.config.MysqlVersion;
 import com.cong.sql.slowmirror.extract.SqlExtractResult;
-import com.cong.sql.slowmirror.utils.GsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +68,7 @@ public class SqlAnalysis {
                 logger.error("SQL 关闭异常");
             }
         }
-        logger.info("sql analysis result = {}", GsonUtil.bean2Json(sqlAnalysisResutlDto));
+        logger.info("SQL 分析结果 = {}", sqlAnalysisResutlDto);
 
         SqlAnalysisResultList sqlAnalysisResultList = new SqlAnalysisResultList();
         sqlAnalysisResultList.setResultList(resultList);
@@ -132,7 +131,7 @@ public class SqlAnalysis {
             }
 
         } catch (SQLException e) {
-            logger.error("sql analysis convert error",e);
+            logger.error("SQL 分析转换异常",e);
         }
         return sqlAnalysisResult;
     }
@@ -152,7 +151,7 @@ public class SqlAnalysis {
                 mysqlVersion = MysqlVersion.MYSQL_5_7.getVersion();
             }
         } catch (Exception e) {
-            logger.error("sql analysis 获取mysql版本异常",e);
+            logger.error("SQL 分析 获取 MySQL 版本异常",e);
         }
         return mysqlVersion;
     }
