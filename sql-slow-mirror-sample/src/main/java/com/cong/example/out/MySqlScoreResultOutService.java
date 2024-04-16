@@ -34,6 +34,7 @@ public class MySqlScoreResultOutService implements SqlScoreResultOutService {
 
         };
         if (sqlScoreResult.getNeedWarn() != null) {
+            logger.info("分析中的 SQL 语句 ID：{}",sqlScoreResult.getSqlId());
             if (Boolean.TRUE.equals(sqlScoreResult.getNeedWarn())){
                 logger.error("SQL 分析结果的分数为:{},低于预期值请判断是否修改", sqlScoreResult.getScore());
                 if (sqlScoreResult.getAnalysisResults() != null) {
