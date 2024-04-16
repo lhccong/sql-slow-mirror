@@ -50,6 +50,7 @@ public class SqlAnalysisConfig {
     /**
      * 例外sql id，集合
      */
+    @Getter
     private static List<String> exceptSqlIds = new ArrayList<>();
 
     /**

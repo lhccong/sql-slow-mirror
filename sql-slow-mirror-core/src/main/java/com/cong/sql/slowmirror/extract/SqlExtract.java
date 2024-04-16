@@ -113,7 +113,7 @@ public class SqlExtract {
         }
 
         //判断 例外id
-        if(SqlAnalysisConfig.getEXCEPT_SQL_IDS_KEY().contains(sqlId)){
+        if(SqlAnalysisConfig.getExceptSqlIds().contains(sqlId)){
             return false;
         }
 
