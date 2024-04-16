@@ -7,5 +7,10 @@ spring:
 sql:
   slow:
     mirror:
-      enabled: true
       analysisSwitch: true
+      onlyCheckOnce: true
+      checkInterval: 300000
+##      exceptSqlIds: com.cong.example.mapper.TaskMapper.selectList,com.cong.example.mapper.TaskMapper.xxx
+      sqlType: SELECT,UPDATE
+      outModel: LOG
+      outputClass: com.cong.example.out.MySqlScoreResultOutService
