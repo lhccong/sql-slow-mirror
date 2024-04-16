@@ -60,18 +60,20 @@ public class SqlAnalysisConfig {
 
 
     /**
-     * 评分规则加载类， 默认 com.jd.sql.analysis.rule.SqlScoreRuleLoaderDefault
+     * 评分规则加载类， 默认 com.cong.sql.slow mirror.rule.SqlScoreRuleLoaderDefault
      */
     private static String scoreRuleLoadClass;
 
     /**
-     * 分析结果输出类，默认日志模式 com.jd.sql.analysis.out.SqlScoreResultOutServiceDefault
+     * 分析结果输出类，默认日志模式 com.cong.sql.slow mirror.out.SqlScoreResultOutServiceDefault
      */
+    @Getter
     private static String outputModel;
 
     /**
-     * 分析结果输出类，默认日志模式 com.jd.sql.analysis.out.SqlScoreResultOutServiceDefault
+     * 分析结果输出类，默认日志模式 com.cong.sql.slow mirror.out.SqlScoreResultOutServiceDefault
      */
+    @Getter
     private static String outputClass;
 
 
