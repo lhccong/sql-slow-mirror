@@ -27,4 +27,10 @@ class SqlSlowMirrorSampleApplicationTests {
 //        System.out.println(taskService.getById(1));
     }
 
+    @Test
+    void testSqlSlowMirror3() {
+        assertNotNull(taskService.list(new LambdaQueryWrapper<Task>().eq(Task::getContent,1)));
+//        System.out.println(taskService.getById(1));
+    }
+
 }
