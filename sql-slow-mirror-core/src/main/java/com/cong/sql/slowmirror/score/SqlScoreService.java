@@ -10,5 +10,5 @@ import com.cong.sql.slowmirror.analysis.SqlAnalysisResultList;
  */
 public interface SqlScoreService {
 
-    SqlScoreResult score(SqlAnalysisResultList sqlAnalysisResultDto);
+    SqlScoreResult score(SqlAnalysisResultList sqlAnalysisResultList);
 }
