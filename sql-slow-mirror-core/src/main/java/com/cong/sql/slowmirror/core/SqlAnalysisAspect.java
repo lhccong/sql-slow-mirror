@@ -81,7 +81,7 @@ public class SqlAnalysisAspect implements Interceptor {
             }
             //是否分析 SQL 且要是连接对象
             else if (SqlAnalysisConfig.isAnalysisSwitch() && firstArg instanceof Connection) {
-                //sql 分析模块
+                //SQL 分析模块
                 //1、获取入参statement
                 StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
 
