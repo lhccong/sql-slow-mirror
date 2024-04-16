@@ -2,6 +2,7 @@ package com.cong.sql.slowmirror.score;
 
 import com.cong.sql.slowmirror.analysis.SqlAnalysisResult;
 import com.cong.sql.slowmirror.analysis.SqlAnalysisResultList;
+import com.cong.sql.slowmirror.rule.RulesEngineExecutor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +66,8 @@ public class SqlScoreServiceRulesEngine implements SqlScoreService {
     }
 
     private List<SqlScoreResultDetail> matchRuleEngine(SqlAnalysisResult result) {
-        logger.info("开始规则引擎匹配：{}",result);
-        return new ArrayList<>();
+        logger.info("====开始规则引擎匹配====");
+
+        return RulesEngineExecutor.execute(result);
     }
 }
