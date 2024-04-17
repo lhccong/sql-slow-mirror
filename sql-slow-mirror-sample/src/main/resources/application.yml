@@ -7,10 +7,10 @@ spring:
 sql:
   slow:
     mirror:
-      analysisSwitch: true
-      onlyCheckOnce: true
-      checkInterval: 300000
-##      exceptSqlIds: com.cong.example.mapper.TaskMapper.selectList,com.cong.example.mapper.TaskMapper.xxx
-      sqlType: SELECT,UPDATE
-      outModel: LOG
-      outputClass: com.cong.example.out.MySqlScoreResultOutService
+      analysisSwitch: true #是否开启 SQL 分析
+#      onlyCheckOnce: true  #是否只分析一次
+#      checkInterval: 300000  #分析间隔 只有 onlyCheckOnce 为 false 的时候才有效
+##      exceptSqlIds: com.cong.example.mapper.TaskMapper.selectList,com.cong.example.mapper.TaskMapper.xxx #不需要分析的 SQL ID
+#      sqlType: SELECT,UPDATE #拦截的 SQL 类型
+#      outModel: LOG #日志模型 默认就是系统的 log 打印
+#      outputClass: com.cong.example.out.MySqlScoreResultOutService #要自定义输出的时候再打开
