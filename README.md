@@ -28,7 +28,7 @@
 
 ## 功能&设计🚀
 
-![image-20240416162922123](docs/imgs/SQL picture.png)
+![sqlPic](docs/imgs/sqlPic.png)
 
 ```txt
 sql-slow-mirror-core SQL 慢镜组件核心代码
