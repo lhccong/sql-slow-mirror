@@ -45,7 +45,7 @@ public class SqlExtract {
     /**
      * 记录sqlId-check time
      */
-    private static final ConcurrentHashMap<String,Long> CHECKED_ID_MAP = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Long> CHECKED_ID_MAP = new ConcurrentHashMap<>();
 
     /**
      * 提取完整sql
@@ -53,45 +53,52 @@ public class SqlExtract {
      * @param statementHandler 语句处理程序
      * @return {@link SqlExtractResult}
      */
-    public static SqlExtractResult extract(StatementHandler statementHandler){
+    public static SqlExtractResult extract(StatementHandler statementHandler) {
 
         //MetaObjectUtil 通过mybatis 反射工具类，从入参提取相关对象
         //提取 PreparedStatementHandler ，用于提取 MappedStatement
         MetaObject delegateMetaObject = MetaObjectUtil.forObject(statementHandler);
 
-        if(delegateMetaObject.getValue(DELEGATE)==null){
+        boolean hasGetter = delegateMetaObject.hasGetter("h");
+
+        if (hasGetter) {
+            delegateMetaObject = MetaObjectUtil.forObject(delegateMetaObject.getValue("h"));
+            delegateMetaObject = MetaObjectUtil.forObject(delegateMetaObject.getValue("target"));
+        }
+
+        if (delegateMetaObject.getValue(DELEGATE) == null) {
             logger.warn("sql analysis get delegate null error,{}", statementHandler.getBoundSql().getSql());
             return null;
         }
-        if(!(delegateMetaObject.getValue(DELEGATE) instanceof PreparedStatementHandler)){
+        if (!(delegateMetaObject.getValue(DELEGATE) instanceof PreparedStatementHandler)) {
             logger.info("sql analysis get delegate is not PreparedStatementHandler,{}", statementHandler.getBoundSql().getSql());
             return null;
         }
-        PreparedStatementHandler preparedStatementHandler = (PreparedStatementHandler)delegateMetaObject.getValue(DELEGATE);
+        PreparedStatementHandler preparedStatementHandler = (PreparedStatementHandler) delegateMetaObject.getValue(DELEGATE);
         //提取 MappedStatement，用于组装完成带参数sql
         MetaObject metaObject = MetaObjectUtil.forObject(preparedStatementHandler);
-        MappedStatement mappedStatement = (MappedStatement)metaObject.getValue("mappedStatement");
+        MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("mappedStatement");
 
         // 获取到节点的id,即sql语句的id
         String sqlId = mappedStatement.getId();
         String sqlType = mappedStatement.getSqlCommandType().name();
-        logger.debug("sql analysis sqlId ={},sqlType={} " ,sqlId,sqlType);
+        logger.debug("sql analysis sqlId ={},sqlType={} ", sqlId, sqlType);
 
         //判断是否需要分析
-        if(!needAnalysis(sqlId,sqlType)){
+        if (!needAnalysis(sqlId, sqlType)) {
             return null;
         }
         //记录检查时间
-        CHECKED_ID_MAP.put(sqlId,System.currentTimeMillis());
+        CHECKED_ID_MAP.put(sqlId, System.currentTimeMillis());
 
         // BoundSql就是封装myBatis最终产生的sql类
         Object parameterObject = statementHandler.getParameterHandler().getParameterObject();
         BoundSql boundSql = mappedStatement.getBoundSql(parameterObject);
         // 获取节点的配置
-        Configuration cOnfiguration= mappedStatement.getConfiguration();
+        Configuration cOnfiguration = mappedStatement.getConfiguration();
         // 获取到最终的sql语句
         String sql = getSql(cOnfiguration, boundSql);
-        logger.info("sql analysis sql = {}",sql);
+        logger.info("sql analysis sql = {}", sql);
 
         SqlExtractResult result = new SqlExtractResult();
         result.setSqlId(sqlId);
@@ -106,19 +113,19 @@ public class SqlExtract {
      * @param sqlType SQL 类型
      * @return boolean
      */
-    private static boolean  needAnalysis(String sqlId,String sqlType){
+    private static boolean needAnalysis(String sqlId, String sqlType) {
         //判断检查类型
-        if(!SqlAnalysisConfig.getSqlType().contains(sqlType)){
+        if (!SqlAnalysisConfig.getSqlType().contains(sqlType)) {
             return false;
         }
 
         //判断 例外id
-        if(SqlAnalysisConfig.getExceptSqlIds().contains(sqlId)){
+        if (SqlAnalysisConfig.getExceptSqlIds().contains(sqlId)) {
             return false;
         }
 
         //onlyCheck判断
-        if(SqlAnalysisConfig.isOnlyCheckOnce() && CHECKED_ID_MAP.get(sqlId)!=null){
+        if (SqlAnalysisConfig.isOnlyCheckOnce() && CHECKED_ID_MAP.get(sqlId) != null) {
             return false;
         }
 
@@ -129,7 +136,7 @@ public class SqlExtract {
     /**
      * 封装了一下sql语句，使得结果返回完整xml路径下的sql语句节点id + sql语句
      */
-    private static String getSql(Configuration configuration, BoundSql boundSql){
+    private static String getSql(Configuration configuration, BoundSql boundSql) {
         return showSql(configuration, boundSql);
     }
 
@@ -183,21 +190,20 @@ public class SqlExtract {
      * @param obj OBJ系列
      * @return {@link String}
      */
-    private static String getParameterValue(Object obj)
-    {
+    private static String getParameterValue(Object obj) {
         String value;
         if (obj instanceof String) {
             value = "'" + obj + "'";
         } else if (obj instanceof Date) {
             DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
             value = "'" + formatter.format(obj) + "'";
-        }  else if (obj instanceof LocalDateTime) {
+        } else if (obj instanceof LocalDateTime) {
             value = "'" + Timestamp.valueOf((LocalDateTime) obj) + "'";
         } else if (obj instanceof LocalDate) {
             value = "'" + java.sql.Date.valueOf((LocalDate) obj) + "'";
         } else if (obj instanceof LocalTime) {
             value = "'" + Time.valueOf((LocalTime) obj) + "'";
-        }  else{
+        } else {
             if (obj != null) {
                 value = obj.toString();
             } else {

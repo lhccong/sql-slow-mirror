@@ -26,7 +26,7 @@ public class ConfigUtils {
      *
      * @param prefix 前缀
      */
-    public static Properties loadConfig( String prefix) {
+    public static Properties loadConfig(String prefix) {
         return loadConfig(prefix, "");
     }
 
@@ -37,13 +37,13 @@ public class ConfigUtils {
      * @param prefix      前缀
      * @param environment 环境
      */
-    public static Properties loadConfig( String prefix, String environment) {
+    public static Properties loadConfig(String prefix, String environment) {
         StringBuilder configFileBuilder = new StringBuilder("application");
         if (StringUtils.isNotBlank(environment)) {
             configFileBuilder.append("-").append(environment);
         }
         configFileBuilder.append(".yml");
-        Yaml yaml=new Yaml();
+        Yaml yaml = new Yaml();
         Map<String, Object> map =
                 yaml.load(ConfigUtils.class.getClassLoader()
                         .getResourceAsStream(configFileBuilder.toString()));

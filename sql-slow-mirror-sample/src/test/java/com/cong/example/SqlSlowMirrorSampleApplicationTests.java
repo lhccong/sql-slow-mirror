@@ -1,6 +1,7 @@
 package com.cong.example;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cong.example.domain.Task;
 import com.cong.example.service.TaskService;
 import org.junit.jupiter.api.Test;
@@ -23,13 +24,13 @@ class SqlSlowMirrorSampleApplicationTests {
 
     @Test
     void testSqlSlowMirror2() {
-        assertNotNull(taskService.getOne(new LambdaQueryWrapper<Task>().eq(Task::getId,1)));
+        assertNotNull(taskService.getOne(new LambdaQueryWrapper<Task>().eq(Task::getId, 1)));
 //        System.out.println(taskService.getById(1));
     }
 
     @Test
     void testSqlSlowMirror3() {
-        assertNotNull(taskService.list(new LambdaQueryWrapper<Task>().eq(Task::getContent,1)));
+        assertNotNull(taskService.page(new Page<>(), null));
 //        System.out.println(taskService.getById(1));
     }
 
