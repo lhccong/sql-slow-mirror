@@ -38,7 +38,7 @@ public class SqlAnalysis {
         logger.info("====开启 SQL 分析====");
 
         List<SqlAnalysisResult> resultList = new ArrayList<>();
-        SqlAnalysisResult sqlAnalysisResutlDto = null;
+        SqlAnalysisResult sqlAnalysisResultDto = null;
 
         //1、获取分析 SQL
         String sourceSql = sqlExtractResult.getSourceSql();
@@ -51,8 +51,8 @@ public class SqlAnalysis {
             pstmt = connection.prepareStatement(analysisSql);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                sqlAnalysisResutlDto = convertSqlAnalysisResultDto(rs);
-                resultList.add(sqlAnalysisResutlDto);
+                sqlAnalysisResultDto = convertSqlAnalysisResultDto(rs);
+                resultList.add(sqlAnalysisResultDto);
             }
         } catch (SQLException e) {
             logger.error("SQL 执行异常");
@@ -68,7 +68,7 @@ public class SqlAnalysis {
                 logger.error("SQL 关闭异常");
             }
         }
-        logger.info("SQL 分析结果 = {}", sqlAnalysisResutlDto);
+        logger.info("SQL 分析结果 = {}", sqlAnalysisResultDto);
 
         SqlAnalysisResultList sqlAnalysisResultList = new SqlAnalysisResultList();
         sqlAnalysisResultList.setResultList(resultList);
